@@ -1,4 +1,4 @@
-name: place-worker-cron-v3
+name: place-worker-cron-v5
 
 on:
   schedule:
