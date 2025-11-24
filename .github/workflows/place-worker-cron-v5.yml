@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     concurrency:
-      group: place-worker-cron-v3
+      group: ${{ github.workflow }}-${{ github.run_number }}
       cancel-in-progress: false
 
     steps:
