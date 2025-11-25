@@ -2,7 +2,7 @@ name: place-worker-cron-v2
 
 on:
   schedule:
-    - cron: "*/1 * * * *"  # Run every 1 minute
+      workflow_dispatch:
   workflow_dispatch:        # Manual trigger
 
 jobs:
