@@ -2,7 +2,7 @@ name: place-worker-cron-v6
 
 on:
   schedule:
-    - cron: "*/1 * * * *"
+      workflow_dispatch:
   workflow_dispatch:
 
 jobs:
