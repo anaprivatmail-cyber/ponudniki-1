@@ -1,3 +1,5 @@
+name: place-worker-cron-v6
+
 on:
   schedule:
     - cron: "*/1 * * * *"   # 🔥 vsakih 1 minuto
