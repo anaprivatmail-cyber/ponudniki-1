@@ -1,16 +1,14 @@
-name: place-worker-cron-v6
-
 on:
   schedule:
-      workflow_dispatch:
-  workflow_dispatch:
+    - cron: "*/1 * * * *"   # 🔥 vsakih 1 minuto
+  workflow_dispatch:        # ročni zagon
 
 jobs:
   call-place-worker:
     runs-on: ubuntu-latest
 
     concurrency:
-      group: ${{ github.workflow }}-${{ github.run_number }}
+      group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: false
 
     steps:
@@ -27,15 +25,17 @@ jobs:
             -H "Content-Type: application/json" \
             --data '{"source":"github-cron"}')
 
+          echo "-------------------------------------"
           echo "Response body:"
           cat response.txt
           echo ""
           echo "HTTP status: $HTTP_STATUS"
+          echo "-------------------------------------"
 
           if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
             echo "Supabase function executed successfully."
             exit 0
           else
-            echo "Supabase function failed."
+            echo "Supabase function failed (but workflow continues)."
             exit 0
           fi
